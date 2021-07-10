@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-  has_many :recipes
-  
   has_secure_password
-
-  validates :username, presence: true, uniqueness: true
+	has_many :carts
+	has_many :cartsitems, through: :carts
+	has_many :items, through: :cartsitems
+	validates :email, presence: true
+    validates :email, uniqueness: true
 end

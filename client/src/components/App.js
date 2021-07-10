@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
-import NavBar from "./NavBar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NavBar from "../components/NavBar.js";
 import Login from "../pages/Login";
-import RecipeList from "../pages/RecipeList";
-import NewRecipe from "../pages/NewRecipe";
+import Shop from "../pages/Shop";
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -21,17 +21,17 @@ function App() {
 
   return (
     <>
+    <Router>
       <NavBar user={user} setUser={setUser} />
       <main>
         <Switch>
-          <Route path="/new">
-            <NewRecipe user={user} />
-          </Route>
-          <Route path="/">
-            <RecipeList />
-          </Route>
+          <Route exact path="/" />
+          <Route path="/shop">
+           <Shop/>
+            </Route>
         </Switch>
       </main>
+      </Router>
     </>
   );
 }

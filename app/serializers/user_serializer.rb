@@ -1,3 +1,4 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :image_url, :bio
+  attributes :id, :name, :email
+  has_many :carts
 end
