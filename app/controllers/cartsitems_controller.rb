@@ -17,7 +17,11 @@ class CartsitemsController < ApplicationController
   def create
     @cartsitem = Cartsitem.new(cartsitem_params)
     if @cartsitem.save
-      render json: @cartsitem, status: :created, location: @cartsitem
+      @item = @cartsitem.item
+      # byebug
+      new_quantity = @item.inventory - 1
+      @item.update(inventory:new_quantity)
+      render json: @item, status: :created, location: @cartsitem
     else
       render json: @cartsitem.errors, status: :unprocessable_entity
     end
@@ -34,6 +38,10 @@ class CartsitemsController < ApplicationController
 
   # DELETE /cartsitems/1
   def destroy
+    @item = @cartsitem.item
+    # byebug
+    new_quantity = @item.inventory + 1
+    @item.update(inventory:new_quantity)
     @cartsitem.destroy
   end
 

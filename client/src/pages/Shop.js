@@ -6,10 +6,11 @@ import Filter from "../components/Filter.js";
 
 function Shop(props) {
 	const [items, setitems] = useState([]);
+	const [cart, setCart] = useState([]);
 	const [cartsItems, setCartsItems] = useState([]);
-	// const [sort, setSort] = useState([])
-	const [cart_id] = useState([])
-	const [item_id] = useState([])
+	const [sort, setSort] = useState([])
+	const [cart_id, setCart_id] = useState(1)
+	const [item_id, setItem_id] = useState("")
 	
 	const sortItems = (event) => {
 	console.log(event.target.value)
@@ -29,9 +30,19 @@ function Shop(props) {
 		//   if (localCart) setCartsItems(localCart)
 	  }, []);
 
+
+	//   let addToCart = (items) => {
+	// 	if (items.id !== cartsItems.id ) {
+	// 	   setCartsItems([...cartsItems, items]);
+	// 	} else { setCartsItems([cartsItems])
+	// 	}
+	   
+	//   };
+
 	  let addToCart = (items) => {
+		  console.log(items.id)
 		let cartCopy = [...cartsItems];
-		let {ID} = items;
+		let ID = items.id;
 		let existingItem = cartCopy.find(cartItem => cartItem.ID === ID);
 		if (existingItem) {
 		  existingItem.quantity += items.quantity //update item
@@ -46,8 +57,9 @@ function Shop(props) {
 		headers: {
 		  "Content-Type": "application/json",
 		},
-		body: JSON.stringify({ cart_id, item_id, user_id:props.user.id }),
-	  })
+		body: JSON.stringify({ cart_id, item_id:items.id, user_id:props.user.id }),
+	  }).then(res => res.json())
+	  .then(res => setCartsItems([...cartsItems, res]))
 	  }
 	  
 	  let removeFromCart = (items) => {
@@ -75,11 +87,12 @@ function Shop(props) {
 		  },
 		  body: JSON.stringify(updateInventory)
 		}
-		fetch('http://localhost:3000/items' + items.inventory, patchOptions)
+		fetch('http://localhost:3000/items/' + item_id, patchOptions)
 		  .then(res => res.json())
 		  .then(updateInventory => {
 		  let newitemArray = items.map(item => items.id === items.inventory ? item = updateInventory : item)
-		  this.setState({ items: setitems })
+		  setitems( newitemArray);
+		  console.log(cartsItems)
 		  })
 		}
 
@@ -118,6 +131,7 @@ function Shop(props) {
 			  cartsItems={cartsItems}
 			  removeFromCart={removeFromCart}
 			  updateInventory={updateInventory}
+			  items={items}
 			  // total={total}
 			/>
 		  </div>

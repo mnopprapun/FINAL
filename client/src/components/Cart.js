@@ -10,6 +10,8 @@ export default class Cart extends Component {
 		name:"",
 		email:"",
 		address:"",
+    cartsitem:"",
+    inventory:"",
 		showCheckout: false };
   }
 
@@ -31,10 +33,12 @@ createOrder = (e) => {
 
 
   render() {
+    
     const { cartsItems } = this.props;
     return (
+      
       <div className="cart-container">
-        {cartsItems.length === 0 ? (
+        {this.props.cartsItems.length === 0 ? (
           <div className="cart cart-header"> Cart is empty </div>
         ) : (
           <div className="">You have {cartsItems.length} in the cart </div>
@@ -42,7 +46,7 @@ createOrder = (e) => {
         <div>
           <div className="cart">
             <ul className="cart-items">
-              {cartsItems.map((item) => (
+              {this.props.cartsItems.map((item) => (
                 <li key={item.id}>
                   <div>
                     <img src={item.image_url} alt={item.name}></img>
@@ -105,7 +109,7 @@ createOrder = (e) => {
                       ></input>
                     </li>
 					<li>
-						<button type="submit" onClick={() => {this.updateInventory()} }>Checkout</button>
+						<button type="submit" onClick={() =>{this.props.updateInventory(this.props.items) }} >Checkout</button>
 					</li>
                   </ul>
                 </div>
