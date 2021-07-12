@@ -4,12 +4,12 @@ import Cart from '../components/Cart.js'
 import Filter from "../components/Filter.js";
 
 
-function Shop() {
+function Shop(props) {
 	const [items, setitems] = useState([]);
 	const [cartsItems, setCartsItems] = useState([]);
-	const [sort, setSort] = useState([])
-	
-	
+	// const [sort, setSort] = useState([])
+	const [cart_id] = useState([])
+	const [item_id] = useState([])
 	
 	const sortItems = (event) => {
 	console.log(event.target.value)
@@ -40,14 +40,48 @@ function Shop() {
 	  }
 	  setCartsItems(cartCopy)
 	  let stringCart = JSON.stringify(cartCopy);
-	  localStorage.setItem("cart", stringCart)
+	  localStorage.setItem("cart", stringCart);
+	  fetch("http://localhost:3000/cartsitems", {
+		method: "POST",
+		headers: {
+		  "Content-Type": "application/json",
+		},
+		body: JSON.stringify({ cart_id, item_id, user_id:props.user.id }),
+	  })
 	  }
 	  
 	  let removeFromCart = (items) => {
 		cartsItems.filter((x) => x.id !== items.id);
 	   setCartsItems([]);
+	   fetch('http://localhost:3000/items/' + items.id, {
+		method: "DELETE",
+		headers: {
+		  'Content-Type': 'application/json'
+		}
+	  })
 	   ;
 	 };
+
+	 let updateInventory = (items) => {
+		let updateInventory = {
+		  ...items,
+		  inventory: items.inventory - 1
+		}
+		let patchOptions = {
+		  method: "PATCH",
+		  headers: {
+		  'Content-Type': 'application/json',
+		  Accepts: 'application/json'
+		  },
+		  body: JSON.stringify(updateInventory)
+		}
+		fetch('http://localhost:3000/items' + items.inventory, patchOptions)
+		  .then(res => res.json())
+		  .then(updateInventory => {
+		  let newitemArray = items.map(item => items.id === items.inventory ? item = updateInventory : item)
+		  this.setState({ items: setitems })
+		  })
+		}
 
 
 	 return (
@@ -69,7 +103,7 @@ function Shop() {
 					  <p>{item.description}</p>
 					  <p className="price">${item.price}</p>
 					  <p>Inventory Count: {item.inventory}</p>
-					  <button variant="primary" onClick={() => addToCart(item)}>
+					  <button variant="primary" onClick={() => addToCart(item)} >
 						Add to Cart
 					  </button>
 					</div>
@@ -83,6 +117,7 @@ function Shop() {
 			<Cart
 			  cartsItems={cartsItems}
 			  removeFromCart={removeFromCart}
+			  updateInventory={updateInventory}
 			  // total={total}
 			/>
 		  </div>

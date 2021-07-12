@@ -2,21 +2,20 @@ import React from "react";
 
 export default function Filter({items, sortItems}) {
 
-  return (
-    <div>
+  return ( 
+    <div className="filter">
       <div className="filter-result"> {} Graphic Cards</div>
       <div className="filter-sort">
         Order
-        <select value={items} onChange={sortItems}>
-			<option>Default</option>
+        <select value={items.price} onChange={sortItems}>
+			<option> Default </option>
           <option>Lowest</option>
           <option>Highest</option>
         </select>
       </div>
     </div>
-  );console.log(items)
+  );
 }
-
 
 // Object.keys(this.props)
 //    .sort((a, b) => ( this.props[a].price - this.props[b].price ))

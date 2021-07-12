@@ -28,6 +28,8 @@ createOrder = (e) => {
 	this.props.createOrder(order)
 }
 
+
+
   render() {
     const { cartsItems } = this.props;
     return (
@@ -103,7 +105,7 @@ createOrder = (e) => {
                       ></input>
                     </li>
 					<li>
-						<button type="submit">Checkout</button>
+						<button type="submit" onClick={() => {this.updateInventory()} }>Checkout</button>
 					</li>
                   </ul>
                 </div>

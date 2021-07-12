@@ -52,7 +52,7 @@ nav{
 .item{
 	flex: 1 1 29rem;
 	height: wrap;
-	padding: .1rem;
+	padding: 3.1rem;
 	margin: 1rem;
 	align-items: center;
 	justify-content: center;
@@ -78,9 +78,10 @@ nav{
 
  }
 
+
  .cart-items{
 	 padding: 10;
-	 width: 100%;
+	 width: 75%;
 	 list-style-type: none;
  }
 

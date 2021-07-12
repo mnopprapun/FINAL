@@ -6,9 +6,9 @@ Item.destroy_all
 
 
 
-user = User.create(name:'admin', email:'admin', password_digest:'admin1')
+# user = User.create(name:'admin', email:'admin', password_digest:'admin1')
 
-Cart.create(user_id:user.id)
+# Cart.create(user_id:user.id)
 
 Item.create(name:'GIGABYTE Gaming GeForce RTX 3070 Ti 8GB GDDR6X PCI Express 4.0 x16 ATX Video Card GV-N307TGAMING OC-8GD',
 description:'NVIDIA Ampere Streaming Multiprocessors, 2nd Generation RT Cores, 3rd Generation Tensor Cores, Powered by GeForce RTX 3070 Ti, Integrated with 8GB GDDR6X 256-bit memory interface, WINDFORCE 3X Cooling System with alternate spinning fans, RGB Fusion 2.0, Protection metal back plate, 2 x HDMI 2.1, 2 x Display Port 1.4a, Core Clock: 1830 MHz', 
@@ -52,4 +52,4 @@ image_url:'https://c1.neweggimages.com/ProductImage/14-126-508-V19.jpg')
 
 
 
-Cartsitem.create!(cart_id:'1', item_id:Item.all.first.id)
+# Cartsitem.create!(cart_id:'1', item_id:Item.all.first.id)

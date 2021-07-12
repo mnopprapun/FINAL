@@ -27,7 +27,7 @@ function App() {
         <Switch>
           <Route exact path="/" />
           <Route path="/shop">
-           <Shop/>
+           <Shop user={user}/>
             </Route>
         </Switch>
       </main>
