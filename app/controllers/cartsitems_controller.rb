@@ -22,7 +22,7 @@ class CartsitemsController < ApplicationController
       new_quantity = @item.inventory - 1
       @item.update(inventory:new_quantity)
       render json: @item, status: :created, location: @cartsitem
-    else
+    else(new_quantity === 0)
       render json: @cartsitem.errors, status: :unprocessable_entity
     end
   end

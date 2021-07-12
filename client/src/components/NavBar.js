@@ -6,7 +6,7 @@ import "/Users/mathawudnopprapun/Development/phase5/graphicsCard-app/client/src/
 function NavBar({ user, setUser }) {
 
 
-  function handleLogoutClick() {
+  function handleLogoutClick(user) {
     fetch("/logout", { method: "DELETE" })
     .then((r) => {
       if (r.ok) {
@@ -34,7 +34,7 @@ function NavBar({ user, setUser }) {
         </Link>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
           <li>
-            <button tabindex="-1" href="#">
+            <button onClick={handleLogoutClick} tabindex="-1" href="#">
               Logout
             </button>
           </li>

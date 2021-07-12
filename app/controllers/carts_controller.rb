@@ -20,7 +20,6 @@ class CartsController < ApplicationController
   # POST /carts
   def create
     @cart = Cart.new(cart_params)
-
     if @cart.save
       render json: @cart, status: :created, location: @cart
     else

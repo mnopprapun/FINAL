@@ -104,7 +104,7 @@ function Shop(props) {
 			items={items}
 			count={items.length} 
 			sortItems={sortItems}
-			/> Limited to 1 Card per Checkout.
+			/> 
 			<card className="card">
 				<ul className="items">
 			  {items.map((item) => {
