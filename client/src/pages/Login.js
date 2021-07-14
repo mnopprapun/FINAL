@@ -40,7 +40,7 @@ function Login({ onLogin }) {
 const Logo = styled.h1`
   font-family: "Marker Felt", fantasy;
   font-size: 3rem;
-  color: blue; 
+  color: rgb(73, 139, 180); 
   margin: 8px 0 16px;
 `;
 

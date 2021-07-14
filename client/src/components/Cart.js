@@ -109,7 +109,7 @@ createOrder = (e) => {
                       ></input>
                     </li>
 					<li>
-						<button type="submit" onClick={() =>{this.props.updateInventory(this.props.items) }} >Checkout</button>
+						<button type="submit" >Checkout</button>
 					</li>
                   </ul>
                 </div>
@@ -121,3 +121,4 @@ createOrder = (e) => {
     );
   }
 }
+// onClick={() =>{this.props.updateInventory(this.props.items) }}

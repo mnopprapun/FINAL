@@ -4,7 +4,7 @@ export default function Filter({items, sortItems}) {
 
   return ( 
     <div className="filter">
-      <div className="filter-result"> {} Graphic Cards</div>
+      <div className="filter-result"> {items.length} Graphic Cards</div>
       <div className="filter-sort">
         Order
         <select value={items.price} onChange={sortItems}>

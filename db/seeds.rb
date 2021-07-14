@@ -6,7 +6,7 @@ Item.destroy_all
 
 
 
-# user = User.create(name:'admin', email:'admin', password_digest:'admin1')
+# user = User.create(name:'admin', email:'admin', password_digest:'admin')
 
 # Cart.create(user_id:user.id)
 

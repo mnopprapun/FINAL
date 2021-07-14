@@ -15,6 +15,7 @@ function Shop(props) {
 	const sortItems = (event) => {
 	console.log(event.target.value)
 	const sort = event.target.value;
+	console.log(items)
 	items.sort()
 	};
 
